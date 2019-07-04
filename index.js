@@ -1,6 +1,7 @@
 
 const https = require('https');
 const QueryString = require('querystring');
+const HttpsProxyAgent = require('https-proxy-agent');
 
 const API_DOMAIN = 'apis.justwatch.com';
 
@@ -20,6 +21,10 @@ class JustWatch {
 				method: method,
 				headers: {}
 			};
+
+			if (this._options.proxy)
+				reqData.agent = new HttpsProxyAgent(this._options.proxy);
+
 			let body = null;
 			// add query string if necessary
 			if(method==='GET') {
