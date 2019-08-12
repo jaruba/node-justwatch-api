@@ -25,6 +25,9 @@ class JustWatch {
 			if (this._options.proxy)
 				reqData.agent = new HttpsProxyAgent(this._options.proxy);
 
+			if (this._options.proxyType)
+				reqData.headers['proxy-type'] = this._options.proxyType;
+
 			let body = null;
 			// add query string if necessary
 			if(method==='GET') {
