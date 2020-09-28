@@ -1,6 +1,7 @@
 
 const needle = require('needle');
 const QueryString = require('querystring');
+const randomUseragent = require('random-useragent');
 
 const API_DOMAIN = 'apis.justwatch.com';
 
@@ -21,6 +22,8 @@ class JustWatch {
 
 			if (this._options.proxyType)
 				opts.headers['proxy-type'] = this._options.proxyType;
+
+ 			opts.headers['user-agent'] = randomUseragent.getRandom()
 
 			let body = null;
 			// add query string if necessary
